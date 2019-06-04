@@ -43,7 +43,7 @@ function main(args) {
 
     // instantiate the openwhisk instance before you can use it
     var openwhisk = ow(options);
-    var newdocpattern = /^1-.*/g;
+    var newdocpattern = /^[1,2]-.*/g;
     var cloudantDocument = {};
     cloudantDocument.args = args;
     var fs = require('fs');

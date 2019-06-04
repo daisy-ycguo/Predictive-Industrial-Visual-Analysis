@@ -163,6 +163,7 @@ app.get('/needimmediateattention', function (req, res) {
 
         //Count images that do need attention
         for (var i = 0; i < body.rows.length; i++) {
+            if(body.rows[i].key.hasOwnProperty("analysis")) {
     		if(body.rows[i].key.analysis.image_classify.images[0].classifiers[0].classes[0].score > 0.60 ||
     			body.rows[i].key.analysis.image_classify.images[0].classifiers[0].classes[1].score > 0.60 ||
     			body.rows[i].key.analysis.image_classify.images[0].classifiers[0].classes[2].score > 0.60 ||
@@ -170,7 +171,8 @@ app.get('/needimmediateattention', function (req, res) {
     			//class[3] is Normal Condition, not needed here
     		) {
     			filtered_body.rows.push(body.rows[i]);
-    		}
+            }
+        }
 		}
 
         //console.log("Filtered DATA: " + JSON.stringify(filtered_body));
